@@ -23,7 +23,6 @@ func Connect() {
 		log.Fatal("MongoDB'ye bağlanılamadı:", err)
 	}
 
-	// Veritabanı ve koleksiyonu seç
 	TodoCollection = Client.Database("go_rest_api_db").Collection("todos")
 
 	log.Println("MongoDB'ye başarıyla bağlanıldı!")

@@ -15,11 +15,11 @@ func main() {
 	e := echo.New()
 
 	// Route'lar
-	e.GET("/", handlers.RenderTodosPage)                 // Ana sayfa
-	e.POST("/todos", handlers.AddTodo)                   // Yeni todo ekleme
-	e.POST("/todos/delete/:id", handlers.DeleteTodo)     // Todo silme
-	e.POST("/todos/update/:id", handlers.UpdateTodo)     // Todo güncelleme
-	e.POST("/todos/complete/:id", handlers.MarkComplete) // Todo'yu tamamlama
+	e.GET("/", handlers.RenderTodosPage)
+	e.POST("/todos", handlers.AddTodo)
+	e.POST("/todos/delete/:id", handlers.DeleteTodo)
+	e.POST("/todos/update/:id", handlers.UpdateTodo)
+	e.POST("/todos/complete/:id", handlers.MarkComplete)
 
 	// Sunucuyu başlat
 	log.Println("Server started at http://localhost:8080")

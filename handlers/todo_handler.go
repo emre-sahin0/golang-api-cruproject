@@ -27,7 +27,7 @@ func AddTodo(c echo.Context) error {
 		Completed: false,
 	}
 
-	// MongoDB'ye kaydet
+	// Mongo kaydet
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 
@@ -36,12 +36,12 @@ func AddTodo(c echo.Context) error {
 		return c.JSON(http.StatusInternalServerError, map[string]string{"message": "Failed to save todo"})
 	}
 
-	return c.Redirect(http.StatusSeeOther, "/") // Ana sayfaya yönlendir
+	return c.Redirect(http.StatusSeeOther, "/")
 }
 func DeleteTodo(c echo.Context) error {
 	id := c.Param("id")
 
-	// ID'yi kontrol edin
+	// ID kontrol edin
 	if id == "" {
 		return c.JSON(http.StatusBadRequest, map[string]string{"message": "ID is required"})
 	}
@@ -62,12 +62,11 @@ func DeleteTodo(c echo.Context) error {
 		return c.JSON(http.StatusInternalServerError, map[string]string{"message": "Failed to delete todo"})
 	}
 
-	// Silinen belge sayısını kontrol edin
 	if result.DeletedCount == 0 {
 		return c.JSON(http.StatusNotFound, map[string]string{"message": "Todo not found"})
 	}
 
-	return c.Redirect(http.StatusSeeOther, "/") // Ana sayfaya yönlendir
+	return c.Redirect(http.StatusSeeOther, "/")
 }
 func UpdateTodo(c echo.Context) error {
 	id := c.Param("id")
@@ -80,7 +79,7 @@ func UpdateTodo(c echo.Context) error {
 		return c.JSON(http.StatusBadRequest, map[string]string{"message": "Invalid ID"})
 	}
 
-	// MongoDB'deki Todo'yu güncelle
+	// Mongo güncelle
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 
@@ -97,7 +96,7 @@ func UpdateTodo(c echo.Context) error {
 		return c.JSON(http.StatusInternalServerError, map[string]string{"message": "Failed to update todo"})
 	}
 
-	return c.Redirect(http.StatusSeeOther, "/") // Ana sayfaya yönlendir
+	return c.Redirect(http.StatusSeeOther, "/")
 }
 func MarkComplete(c echo.Context) error {
 	id := c.Param("id")
@@ -108,7 +107,7 @@ func MarkComplete(c echo.Context) error {
 		return c.JSON(http.StatusBadRequest, map[string]string{"message": "Invalid ID"})
 	}
 
-	// MongoDB'deki Todo'yu güncelle
+	// Mong güncelle
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
 
@@ -124,7 +123,7 @@ func MarkComplete(c echo.Context) error {
 		return c.JSON(http.StatusInternalServerError, map[string]string{"message": "Failed to mark as complete"})
 	}
 
-	return c.Redirect(http.StatusSeeOther, "/") // Ana sayfaya yönlendir
+	return c.Redirect(http.StatusSeeOther, "/")
 }
 func RenderTodosPage(c echo.Context) error {
 	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
